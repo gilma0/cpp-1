@@ -39,13 +39,14 @@ if [ -f Makefile ] || [ -f makefile ]; then
 			threadrace=0
 			fi
 		fi
-	fi
-	echo
 	echo "Compilation      Memory leaks    Thread race"
 	echo "   "$compile"             "$mem"           " $thread
+	fi
+	echo
+
 else
 	echo "Makefile not found"
 fi
-echo $compilation$memleak$threadrace
+echo $((2#$compilation$memleak$threadrace))
 exit $((2#$compilation$memleak$threadrace))
 
