@@ -47,4 +47,5 @@ else
 	echo "Makefile not found"
 fi
 echo $compilation$memleak$threadrace
+exit $compilation$memleak$threadrace
 
