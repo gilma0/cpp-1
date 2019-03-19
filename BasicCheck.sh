@@ -18,10 +18,10 @@ if [ -f Makefile ] || [ -f makefile ]; then
 	else
 		compilation=0
 		compile="PASS"
-		valgrind --leak-check=full --error-exitcode=1 ./main
+		valgrind --leak-check=full --error-exitcode=1 ./$program
 		if [ $? -gt 0 ] || [ $? -lt 0 ]; then
 			mem="FAIL"
-			valgrind --tool=helgrind --error-exitcode=1 ./main
+			valgrind --tool=helgrind --error-exitcode=1 ./$program
 			if [ $? -gt 0 ] || [ $? -lt 0 ]; then
 			thread="FAIL"
 			else
@@ -31,7 +31,7 @@ if [ -f Makefile ] || [ -f makefile ]; then
 		else
 			memleak=0
 			mem="PASS"
-			valgrind --tool=helgrind --error-exitcode=1 ./main
+			valgrind --tool=helgrind --error-exitcode=1 ./$program
 			if [ $? -gt 0 ] || [ $? -lt 0 ]; then
 			thread="FAIL"
 			else
@@ -49,4 +49,3 @@ else
 fi
 echo $((2#$compilation$memleak$threadrace))
 exit $((2#$compilation$memleak$threadrace))
-
